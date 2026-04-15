@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="right">
    <strong>中文</strong> | <a href="./README.en.md">English</a>
 </p>
@@ -171,3 +172,6 @@ MIT 协议开源。
 <p align="center">
   由 <a href="https://github.com/techdou">TechDou</a> 构建 · 基于 <a href="https://github.com/songquanpeng/one-api">One API</a>
 </p>
+=======
+# one-api
+>>>>>>> 836a506531ed217fd17a2c15067faa8e52823f70
