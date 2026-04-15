@@ -2,7 +2,6 @@ package model
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/songquanpeng/one-api/common"
 	"github.com/songquanpeng/one-api/common/config"
 	"github.com/songquanpeng/one-api/common/env"
@@ -11,7 +10,6 @@ import (
 	"github.com/songquanpeng/one-api/common/random"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
-	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"os"
 	"strings"
@@ -75,8 +73,9 @@ func chooseDB(envName string) (*gorm.DB, error) {
 		// Use MySQL
 		return openMySQL(dsn)
 	default:
-		// Use SQLite
-		return openSQLite()
+		// Use MySQL as default
+		logger.FatalLog("SQL_DSN not set, please set it to use MySQL database")
+		return nil, nil
 	}
 }
 
@@ -99,14 +98,7 @@ func openMySQL(dsn string) (*gorm.DB, error) {
 	})
 }
 
-func openSQLite() (*gorm.DB, error) {
-	logger.SysLog("SQL_DSN not set, using SQLite as database")
-	common.UsingSQLite = true
-	dsn := fmt.Sprintf("%s?_busy_timeout=%d", common.SQLitePath, common.SQLiteBusyTimeout)
-	return gorm.Open(sqlite.Open(dsn), &gorm.Config{
-		PrepareStmt: true, // precompile SQL
-	})
-}
+
 
 func InitDB() {
 	var err error
