@@ -11,7 +11,6 @@ import { showError, showInfo, showSuccess, renderQuota } from 'utils/common';
 const TopupCard = () => {
   const theme = useTheme();
   const [redemptionCode, setRedemptionCode] = useState('');
-  const [topUpLink, setTopUpLink] = useState('');
   const [userQuota, setUserQuota] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -43,11 +42,7 @@ const TopupCard = () => {
   };
 
   const openTopUpLink = () => {
-    if (!topUpLink) {
-      showError('超级管理员未设置充值链接！');
-      return;
-    }
-    window.open(topUpLink, '_blank');
+    window.location.href = '/pay';
   };
 
   const getUserQuota = async () => {
@@ -61,13 +56,6 @@ const TopupCard = () => {
   };
 
   useEffect(() => {
-    let status = localStorage.getItem('siteInfo');
-    if (status) {
-      status = JSON.parse(status);
-      if (status.top_up_link) {
-        setTopUpLink(status.top_up_link);
-      }
-    }
     getUserQuota().then();
   }, []);
 
