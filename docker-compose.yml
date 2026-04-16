@@ -1,6 +1,6 @@
 services:
   one-api:
-    image: justsong/one-api:latest
+    image: one-api:custom
     container_name: one-api
     restart: always
     command: --log-dir /app/logs
@@ -9,7 +9,6 @@ services:
     volumes:
       - ./data/oneapi:/data
       - ./logs:/app/logs
-      - ./web/air:/app/web/build
     environment:
       - SQL_DSN=oneapi:123456@tcp(mysql:3306)/one-api
       - REDIS_CONN_STRING=redis://redis
