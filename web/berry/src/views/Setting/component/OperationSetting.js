@@ -29,7 +29,7 @@ const OperationSetting = () => {
     ModelRatio: "",
     CompletionRatio: "",
     GroupRatio: "",
-    TopUpLink: "",
+
     ChatLink: "",
     QuotaPerUnit: 0,
     AutomaticDisableChannelEnabled: "",
@@ -160,9 +160,6 @@ const OperationSetting = () => {
         }
         break;
       case "general":
-        if (originInputs["TopUpLink"] !== inputs.TopUpLink) {
-          await updateOption("TopUpLink", inputs.TopUpLink);
-        }
         if (originInputs["ChatLink"] !== inputs.ChatLink) {
           await updateOption("ChatLink", inputs.ChatLink);
         }
@@ -198,18 +195,7 @@ const OperationSetting = () => {
             direction={{ sm: "column", md: "row" }}
             spacing={{ xs: 3, sm: 2, md: 4 }}
           >
-            <FormControl fullWidth>
-              <InputLabel htmlFor="TopUpLink">充值链接</InputLabel>
-              <OutlinedInput
-                id="TopUpLink"
-                name="TopUpLink"
-                value={inputs.TopUpLink}
-                onChange={handleInputChange}
-                label="充值链接"
-                placeholder="例如发卡网站的购买链接"
-                disabled={loading}
-              />
-            </FormControl>
+
             <FormControl fullWidth>
               <InputLabel htmlFor="ChatLink">聊天链接</InputLabel>
               <OutlinedInput

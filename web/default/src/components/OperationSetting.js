@@ -21,7 +21,7 @@ const OperationSetting = () => {
     ModelRatio: '',
     CompletionRatio: '',
     GroupRatio: '',
-    TopUpLink: '',
+
     ChatLink: '',
     QuotaPerUnit: 0,
     AutomaticDisableChannelEnabled: '',
@@ -159,9 +159,6 @@ const OperationSetting = () => {
         }
         break;
       case 'general':
-        if (originInputs['TopUpLink'] !== inputs.TopUpLink) {
-          await updateOption('TopUpLink', inputs.TopUpLink);
-        }
         if (originInputs['ChatLink'] !== inputs.ChatLink) {
           await updateOption('ChatLink', inputs.ChatLink);
         }
@@ -397,17 +394,7 @@ const OperationSetting = () => {
           <Divider />
           <Header as='h3'>{t('setting.operation.general.title')}</Header>
           <Form.Group widths={4}>
-            <Form.Input
-              label={t('setting.operation.general.topup_link')}
-              name='TopUpLink'
-              onChange={handleInputChange}
-              autoComplete='new-password'
-              value={inputs.TopUpLink}
-              type='link'
-              placeholder={t(
-                'setting.operation.general.topup_link_placeholder'
-              )}
-            />
+
             <Form.Input
               label={t('setting.operation.general.chat_link')}
               name='ChatLink'
